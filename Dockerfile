@@ -1,21 +1,28 @@
-# Use a lightweight Python image to avoid apt install issues
-FROM python:3.10-slim
+FROM ubuntu:latest
 
-# Install git and clean up to reduce image size
-RUN apt-get update && apt-get install -y git && apt-get clean
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3.10-venv \
+    python3.10-distutils \
+    curl \
+    git
 
-# Install PyYAML for parsing YAML files
+
+RUN ln -sf /usr/bin/python3.10 /usr/bin/python3 && \
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python3
+
+    
 RUN pip install PyYAML
 
-# Copy your script and entrypoint into the container
+
 COPY feed.py /usr/bin/feed.py
 COPY entrypoint.sh /entrypoint.sh
 
-# Ensure entrypoint is executable
+# Make entrypoint executable
 RUN chmod +x /entrypoint.sh
 
-# Optional: Set working directory if needed
+# Default workdir for GitHub Actions
 WORKDIR /github/workspace
 
-# Set entrypoint to run your script
+# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
