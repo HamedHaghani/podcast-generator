@@ -1,11 +1,11 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 
 RUN apt-get update && apt-get install -y \
-python3.10 \
-python3-pip \
-git \
-python3-yaml
+    python3.10 \
+    python3-pip \
+    git \
+    && apt-get clean
 
 
 RUN pip3 install PyYAML
@@ -17,7 +17,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-
+# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 
 
