@@ -1,28 +1,23 @@
 FROM ubuntu:latest
 
+
 RUN apt-get update && apt-get install -y \
     python3.10 \
-    python3.10-venv \
-    python3.10-distutils \
-    curl \
-    git
+    python3-pip \
+    git \
+    && apt-get clean
 
 
-RUN ln -sf /usr/bin/python3.10 /usr/bin/python3 && \
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3
-
-    
-RUN pip install PyYAML
+RUN pip3 install PyYAML
 
 
 COPY feed.py /usr/bin/feed.py
 COPY entrypoint.sh /entrypoint.sh
 
-# Make entrypoint executable
+
 RUN chmod +x /entrypoint.sh
 
-# Default workdir for GitHub Actions
-WORKDIR /github/workspace
 
-# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
+
+

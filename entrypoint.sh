@@ -1,17 +1,16 @@
-name: "Podcast Generator"
-description: "Generates a feed for a podcast from a YAML file"
-author: "Hamed Haghani"
+#!/bin/bash
 
-inputs:
-  email:
-    description: "The committer's email address"
-    required: true
-    default: ${{ github.actor }}@users.noreply.github.com
-  name:
-    description: "The committer's name"
-    required: true
-    default: ${{ github.actor }}
+set -e
+echo "===================="
+echo "Actor: $GITHUB_ACTOR"
+echo "Email: $INPUT_EMAIL"
 
-runs:
-  using: "docker"
-  image: "Dockerfile"
+git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.email "${INPUT_EMAIL}"
+git config --global --add safe.directory /github/workspace 
+
+python3 /usr/bin/feed.py
+
+git add -A && git commit -m "Update Feed"
+git push --set-upstream origin main
+echo "===================="
