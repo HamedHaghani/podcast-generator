@@ -1,26 +1,19 @@
 FROM ubuntu:latest
 
-# Install system dependencies
+# Update apt-get and install necessary packages
 RUN apt-get update && apt-get install -y \
-python3.10 \
-python3-pip \
-git \
-python3-yaml \
-python3-venv # Ensure virtual environments can be created
+    python3.12 \
+    python3-pip \
+    git \
+    python3-yaml
 
-# Create a virtual environment
-RUN python3 -m venv /venv
+# RUN pip3 install PyYAML     --> which generates the error 1 and fails the build.
 
-# Upgrade pip inside the virtual environment
-RUN /venv/bin/pip install --upgrade pip
-
-# Install python dependencies inside the virtual environment
-RUN /venv/bin/pip install pyyaml
-
-# Copy application files
+# Copy feed.py file to the Docker image
 COPY feed.py /usr/bin/feed.py
+
+# Copy entrypoint.sh file to the Docker image
 COPY entrypoint.sh /entrypoint.sh
 
-# Set the virtual environemnt as the default Python environment
-ENV PATH="/venv/bin:$PATH"
+# Set the entrypoint for the Docker image
 ENTRYPOINT ["/entrypoint.sh"]

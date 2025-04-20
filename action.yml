@@ -1,7 +1,7 @@
 name: "Podcast Generator"
-author: "Hamed Haghani"
+author: "Ray Villalobos"
 description: "Generates a feed for a podcast from a YAML file"
-runs: 
+runs:
   using: "docker"
   image: "Dockerfile"
 branding:
@@ -16,4 +16,3 @@ inputs:
     description: The committer's name
     required: true
     default: ${{ github.actor }}
-
