@@ -1,20 +1,20 @@
 name: "Podcast Generator"
-description: "Generates a feed for a podcast from a YAML file"
 author: "Hamed Haghani"
+description: "Generates a feed for a podcast from a YAML file"
+runs: 
+  using: "docker"
+  image: "Dockerfile"
+  dockerfile: ./Dockerfile
 branding:
   icon: "git-branch"
   color: "red"
-
 inputs:
   email:
-    description: "The committer's email address"
+    description: The commiter's email address
     required: true
-    default: ${{ github.actor }}@users.noreply.github.com
+    default: ${{ github.actor }}@localhost
   name:
-    description: "The committer's name"
+    description: The committer's name
     required: true
     default: ${{ github.actor }}
 
-runs:
-  using: "docker"
-  image: "Dockerfile"
