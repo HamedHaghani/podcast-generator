@@ -7,7 +7,7 @@ Use this to automate RSS generation for your podcast and commit the result back 
 
 ---
 
-## 🚀 Features
+## 🚀 Features 
 
 - 📥 Reads a `feed.yaml` file
 - 📄 Converts it to a standards-compliant RSS feed (`feed.xml`)
