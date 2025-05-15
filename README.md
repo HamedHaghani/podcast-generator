@@ -1,7 +1,8 @@
-# 🎙️ Podcast RSS Feed Generator by Hamed Haghani 
+# 🎙️ Podcast RSS Feed Generator by Hamed Haghani  
 
 This GitHub Action automatically generates a podcast RSS feed from a YAML file.  
 It is designed to be used in a **separate repo** (e.g., `podcast-test`) that contains your `feed.yaml`.
+
 
 Use this to automate RSS generation for your podcast and commit the result back to your repository.
 
