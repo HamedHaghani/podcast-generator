@@ -6,7 +6,7 @@ It is designed to be used in a **separate repo** (e.g., `podcast-test`) that con
 
 Use this to automate RSS generation for your podcast and commit the result back to your repository.
 
----
+----
 
 ## 🚀 Features 
 
